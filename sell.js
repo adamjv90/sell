@@ -1,9 +1,15 @@
 'use strict';
 
+var canUseDOM = !!(
+  typeof window !== 'undefined' &&
+  window.document &&
+  window.document.createElement
+);
+
 var get = easyGet;
 var set = easySet;
 
-if (document.selection && document.selection.createRange) {
+if (canUseDOM && document.selection && document.selection.createRange) {
   get = hardGet;
   set = hardSet;
 }
